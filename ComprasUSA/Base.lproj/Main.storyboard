@@ -158,10 +158,7 @@
                                                 <rect key="frame" x="98.5" y="0.0" width="201.5" height="38.5"/>
                                                 <color key="textColor" systemColor="systemRedColor"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
-                                                <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
-                                                <connections>
-                                                    <outlet property="delegate" destination="9zH-CA-r6o" id="e48-27-ZkX"/>
-                                                </connections>
+                                                <textInputTraits key="textInputTraits" keyboardType="decimalPad" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                             </textField>
                                         </subviews>
                                     </stackView>
@@ -211,6 +208,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="messageLabel" destination="DkV-it-HIP" id="tXF-Rg-Jcx"/>
+                        <outlet property="totalSpendTextField" destination="ckf-fE-fqw" id="bZu-Ou-VuF"/>
                         <outlet property="totalWithNoTaxes" destination="ItQ-HX-M0N" id="QdY-t4-JCo"/>
                     </connections>
                 </viewController>

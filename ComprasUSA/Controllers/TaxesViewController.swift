@@ -22,16 +22,22 @@ class TaxesViewController: UIViewController {
     // é sempre carregada quando a view aparece. O viewDidLoad só é carregado uma vez, nao atualizando os valores.
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        print("total USS: \(calculator.totalSpend) IMP EST: \(calculator.stateTaxes) calculo impEstado: \(calculator.calculateStateTaxes())")
-        totalUSS.text = "U$ \(calculator.totalSpend)"
-        stateTaxesLabel.text = "Imposto do Estado (\(calculator.stateTaxes)%)"
-        totalStateTaxes.text = "U$ \(String(format: "%.2f", calculator.calculateStateTaxes()))"
-        iofTaxesLabel.text = "IOF (\(calculator.iofTaxes)%)"
+        calculateTaxes()
     }
     
     @IBAction func switchEvent(_ sender: UISwitch) {
-        totalRS.text = sender.isOn ? "U$ \(String(format: "%.2f", calculator.calculateTotalWithIOF()))" : "U$ \(String(format: "%.2f", calculator.calculateTotal()))"
+        totalRS.text = sender.isOn ? "\(calculator.getFormattedValue(value: calculator.calculateTotalWithIOF(), withCurrency: ""))" : "\(calculator.getFormattedValue(value: calculator.calculateTotal(), withCurrency: ""))"
+    }
+    
+    func calculateTaxes() {
+        print("total US$: \(calculator.totalSpend) IMP EST: \(calculator.stateTaxes) calculo impEstado: \(calculator.calculateStateTaxes())")
+        
+        totalUSS.text = "\(calculator.getFormattedValue(value: calculator.totalSpend, withCurrency: ""))"
+        stateTaxesLabel.text = "Imposto do Estado (\(calculator.stateTaxes)%)"
+        totalStateTaxes.text = "\(calculator.getFormattedValue(value: calculator.calculateStateTaxes(), withCurrency: "US$ "))"
+        iofTaxesLabel.text = "IOF (\(calculator.iofTaxes)%)"
+        totalIOFTaxes.text = "\(calculator.getFormattedValue(value: calculator.calculateIofTaxes(), withCurrency: "US$ "))"
+        print(calculator.calculateIofTaxes())
     }
 }
 

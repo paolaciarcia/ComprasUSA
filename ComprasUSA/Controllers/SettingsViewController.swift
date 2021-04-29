@@ -18,9 +18,9 @@ class SettingsViewController: UIViewController {
 extension SettingsViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         calculator.dolarExchange = Double(dollarExchange.text ?? "") ?? 0.0
-        calculator.iofTaxes = Double(iofTaxes.text ?? "") ?? 0.0
         calculator.stateTaxes = Double(textField.text ?? "") ?? 0.0
-        print("\(calculator.dolarExchange) totalSpend: \(calculator.totalSpend)")
+        calculator.iofTaxes = Double(iofTaxes.text ?? "") ?? 0.0
+        print("\(calculator.dolarExchange) totalSpend: \(calculator.totalSpend) iofTaxes \(calculator.iofTaxes)")
         textField.resignFirstResponder()
         return true
     }

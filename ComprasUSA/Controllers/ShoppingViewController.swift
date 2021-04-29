@@ -13,6 +13,7 @@ class ShoppingViewController: UIViewController {
     
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var totalWithNoTaxes: UILabel!
+    @IBOutlet weak var totalSpendTextField: UITextField!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -21,18 +22,13 @@ class ShoppingViewController: UIViewController {
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
+        setAmount()
     }
-}
-
-extension ShoppingViewController: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        //permitor que o valor seja tratado como número. Permitir virgulas como texto no TextField
-        
-        calculator.totalSpend = calculator.convertToDouble(textField.text!)
+    
+    func setAmount() {
+        calculator.totalSpend = calculator.convertToDouble(totalSpendTextField.text!)
         messageLabel.text = "Valor sem impostos (dólar: \(calculator.dolarExchange))"
-        totalWithNoTaxes.text = "R$ \(String(format: "%.2f", calculator.totalSpend * calculator.dolarExchange))"
-        textField.resignFirstResponder()
-        return true
+        totalWithNoTaxes.text = calculator.getFormattedValue(value: calculator.totalSpend * calculator.dolarExchange, withCurrency: "R$ ")
     }
 }
 
